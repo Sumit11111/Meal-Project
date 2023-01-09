@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="./styles.css"/>
+        <style>
+            body{
+                background-color: rgb(238, 228, 228);
+            }
+        </style>
+        </head>
+    <body>
+        <!-- header of Favourite page -->
+        <header>
+            <div id="fav">
+                <h1>Your Favourite Meals</h1>
+            </div> 
+        </header>
+        <!-- Favourite List -->
+        <ul id="fav-list">
+            <li id="fav-list-item">
+            </li> 
+         </ul>
+    </body>
+        <script>
+            //creating Favourites array and getting data from local storage which is stored
+            const Favourites=JSON.parse(localStorage.getItem("links"));
+
+            //fav list creation function which is called on script load
+            const favListCreation = (text) => {
+            //creatig different nodes and appending each other with properties
+            const liNode = document.createElement("li");
+            liNode.id = "search-results-list-item";
+            const divNode = document.createElement("div");
+            divNode.id = "li-div-fav";
+            const textNode = document.createElement("a");
+            textNode.innerText = text;
+            textNode.href = `./details.html?${text}`;
+            const btnNode = document.createElement("input");
+            btnNode.value = "Delete";
+            btnNode.type = "button";
+            //adding event listner on delete button inside list items
+            btnNode.addEventListener(
+                "click",
+                (e) => {
+                var fav = JSON.parse(localStorage.getItem("links"));
+                var idx = fav.indexOf(text);
+                fav.splice(idx, 1);
+                //deleting item from local storage also by adding new array again
+                localStorage.setItem("links", JSON.stringify(fav));
+                //delete one list item from dom
+                e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+                },
+                false
+            );
+            //appending different nodes with right manner
+            liNode.appendChild(divNode);
+            divNode.appendChild(textNode);
+            divNode.appendChild(btnNode);
+            document.getElementById("fav-list").appendChild(liNode);
+            };
+
+            //function to create list by iterating Favourites array
+            const favCreation = () => {
+            for (let favourite of Favourites) {
+                favListCreation(favourite);
+            }
+            };
+            //calling function on page load
+            favCreation();
+        </script>
+</html>

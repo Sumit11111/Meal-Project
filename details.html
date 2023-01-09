@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <style>
+            body{
+                margin: 5px;
+            }
+            div{
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 2px solid grey;
+                padding: 10px;
+                background-color: lightgray;
+            }
+            img{
+                height: 200px;
+                width: 30%;
+            }
+            p{
+                margin-left: 10px;
+                width: 65%;
+            }
+            </style>
+    </head>
+    <body id="body">
+        <script>
+            //during url call on click of link we passing name as param and extracting then we call api again
+            const searchHandler1 = (val) => {
+                fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${val}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    for(let meal of data.meals)
+                    {
+                        //creating object per our requirement and passing it to create diffent nodes
+                        var editedMeal={name:`${meal.strMeal}`,text:`${meal.strInstructions}`,url:`${meal.strMealThumb}`}
+                        //creating nodes inside this function
+                        detailCreation(editedMeal);
+                    }
+                });
+            };
+
+            //different nodes creation and appending those as per our requirement
+            const detailCreation=(data)=>{
+                const hNode=document.createElement("h1");
+                hNode.innerText=`${data.name}`;
+                const divNode=document.createElement("div");
+                divNode.id="details";
+                const imgNode=document.createElement("img");
+                imgNode.alt="ss";
+                imgNode.src=`${data.url}`;
+                const pNode=document.createElement("p");
+                pNode.innerText=`${data.text}`;
+                //appending different nodes
+                divNode.appendChild(imgNode);
+                divNode.appendChild(pNode);
+                document.getElementById("body").appendChild(hNode);
+                document.getElementById("body").appendChild(divNode);
+            }
+
+            //this function do all work by calling different functions
+            function displayContent()
+            {   
+                //getting params from url and manipulating according to our need then calling api
+                var param=location.search.substring(1);
+                var name="";
+                for(let i=0;i<param.length-1;i++)
+                {
+                    if((param[i]>='a'&&param[i]<='z')||(param[i]>='A'&&param[i]<='Z'))
+                    {
+                        name+=param[i];
+                    }
+                    if(param[i]=="%")
+                    {
+                        name+=" ";
+                    }
+                }
+                console.log(name);
+                searchHandler1(name);
+            }
+            displayContent();
+            </script>
+    </body>
+</html>

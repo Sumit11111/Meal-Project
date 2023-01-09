@@ -1,0 +1,145 @@
+body {
+    margin: 1px;
+}
+
+header {
+    background-color: grey;
+    height: 60px;
+}
+
+#project-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 400px;
+    margin-top: 30px;
+}
+
+#search-bar {
+    width: 40%;
+}
+
+#fav {
+    width: 90%;
+}
+
+#fav h1 {
+    margin-left: 400px;
+
+}
+
+#icon-search {
+    display: flex;
+    border: 2px solid black;
+    /* border-radius: 20px; */
+    width: 100%;
+    margin-left: 38px;
+}
+
+#logo {
+    margin-left: 150px;
+    height: 200px;
+    width: 200px;
+}
+
+#icon {
+    height: 40px;
+    width: 10%;
+    padding-left: 15px;
+}
+
+#search {
+    width: 90%;
+    margin-left: 38px;
+    height: 40px;
+    /* border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px; */
+    border: 0px;
+    margin-right: 25px;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+#search-results-list {
+    max-height: 300px;
+    overflow: auto;
+    margin: -2px;
+    width: 101%;
+    list-style: none;
+}
+
+#fav-list {
+    max-height: 90%;
+    overflow: auto;
+    width: 70%;
+    list-style: none;
+    margin-left: 100px;
+}
+
+#li-div {
+    display: flex;
+    justify-content: space-between;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+
+#li-div input {
+    background-color: greenyellow;
+}
+
+#li-div input:hover {
+    filter: brightness(120%);
+}
+
+#li-div-fav {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid black;
+    padding: 5px;
+    height: 35px;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: gainsboro;
+}
+
+#li-div-fav input {
+    background-color: red;
+    width: 150px;
+    border-radius: 10px;
+}
+
+#li-div-fav input:hover {
+    filter: brightness(150%);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    width: 200px;
+}
+
+
+#li-div input {
+    height: 25px;
+    margin-top: 2px;
+}
+
+h1 a {
+    color: white;
+    margin-left: 20px;
+}
+
+h1 {
+    color: whitesmoke;
+}
+
+h1 a:hover {
+    filter: brightness(200%);
+
+}
